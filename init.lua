@@ -1,6 +1,6 @@
 local config = {
-
   -- Configure AstroNvim updates
+  
   updater = {
     remote = "origin", -- remote to use
     channel = "nightly", -- "stable" or "nightly"
@@ -16,7 +16,6 @@ local config = {
     --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
     -- },
   },
-
   -- Set colorscheme
   colorscheme = "nord",
 
@@ -28,8 +27,13 @@ local config = {
     g = {
       mapleader = " ", -- sets vim.g.mapleader
     },
+
   },
 
+  mappings = {
+    i = {
+    }
+  },
   -- Default theme configuration
   default_theme = {
     diagnostics_style = { italic = true },
@@ -81,10 +85,6 @@ local config = {
         "arcticicestudio/nord-vim",
         as = "nord"
       },
-      {
-        "github/copilot.vim"
-      },
-
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
