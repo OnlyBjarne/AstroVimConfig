@@ -17,7 +17,7 @@ local config = {
     -- },
   },
   -- Set colorscheme
-  colorscheme = "nord",
+  colorscheme = "catppuccin",
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
@@ -28,11 +28,6 @@ local config = {
       mapleader = " ", -- sets vim.g.mapleader
     },
 
-  },
-
-  mappings = {
-    i = {
-    }
   },
   -- Default theme configuration
   default_theme = {
@@ -81,10 +76,11 @@ local config = {
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-      {
-        "arcticicestudio/nord-vim",
-        as = "nord"
-      },
+      { "catppuccin/nvim", as = "catppuccin" },
+      -- {
+      --   "arcticicestudio/nord-vim",
+      --   as = "nord"
+      -- },
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
@@ -151,6 +147,7 @@ local config = {
         ["<leader>"] = {
           -- which-key registration table for normal mode, leader prefix
           -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
+          ["lF"] = { "<cmd>EslintFixAll<cr>", "Eslint Fix All"}
         },
       },
     },
@@ -164,6 +161,7 @@ local config = {
   -- true == 1000
   cmp = {
     source_priority = {
+
       nvim_lsp = 1000,
       luasnip = 750,
       buffer = 500,
