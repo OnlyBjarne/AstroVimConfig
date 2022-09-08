@@ -1,6 +1,5 @@
 local config = {
   -- Configure AstroNvim updates
-  
   updater = {
     remote = "origin", -- remote to use
     channel = "nightly", -- "stable" or "nightly"
@@ -18,15 +17,32 @@ local config = {
   },
   -- Set colorscheme
   colorscheme = "catppuccin",
+  header = {
+"                  .u[[/;:,.         .odMMMMMM'",
+"               .o888UU[[[/;:-.  .o@P^    MMM^",
+"             oN88888UU[[[/;::-.        dP^",
+"            dNMMNN888UU[[[/;:--.   .o@P^",
+"           ,MMMMMMN888UU[[/;::-. o@^",
+"           NNMMMNN888UU[[[/~.o@P^",
+"           888888888UU[[[/o@^-..",
+"          oI8888UU[[[/o@P^:--..",
+"       .@^  YUU[[[/o@^;::---..",
+"     oMP     ^/o@P^;:::---..",
+"  .dMMM    .o@^ ^;::---...",
+" dMMMMMMM@^`       `^^^^",
+"YMMMUP^",
+"^^",
+"              WELCOME, BJARNE"
+ },
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
     },
-    g = {
-      mapleader = " ", -- sets vim.g.mapleader
-    },
+    -- g = {
+    --   mapleader = " ", -- sets vim.g.mapleader
+    -- },
 
   },
   -- Default theme configuration
@@ -76,20 +92,34 @@ local config = {
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-      { "catppuccin/nvim", as = "catppuccin" },
-      -- {
-      --   "arcticicestudio/nord-vim",
-      --   as = "nord"
-      -- },
-      -- You can also add new plugins here as well:
-      -- { "andweeb/presence.nvim" },
-      -- {
-      --   "ray-x/lsp_signature.nvim",
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
+      { "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+          require("catppuccin").setup({
+            transparent_background=false
+          })
+        end
+      },
+      {
+        "kylechui/nvim-surround",
+        as = "nvim-surround",
+        config = function ()
+          require("nvim-surround").setup()
+        end
+      },
+      {
+        "sunjon/shade.nvim",
+        as = "shade",
+        config = function()
+          require("shade").setup({
+            keys = {
+              brightness_up    = '<C-+>',
+              brightness_down  = '<C-->',
+              toggle           = '<Leader>-',
+            }
+          })
+        end
+      }
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
@@ -147,7 +177,8 @@ local config = {
         ["<leader>"] = {
           -- which-key registration table for normal mode, leader prefix
           -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
-          ["lF"] = { "<cmd>EslintFixAll<cr>", "Eslint Fix All"}
+          ["lF"] = { "<cmd>EslintFixAll<cr>", "Eslint Fix All"},
+          ["AR"] = {"<cmd>AstroReload<cr>", "Reload Config"}
         },
       },
     },
@@ -161,7 +192,6 @@ local config = {
   -- true == 1000
   cmp = {
     source_priority = {
-
       nvim_lsp = 1000,
       luasnip = 750,
       buffer = 500,
